@@ -7,6 +7,7 @@ test('UI Control Test', async ({page})=>
     const username = page.locator("#username");
     const password = page.locator("[type='password']");
     const signInButton = page.locator("#signInBtn");
+    const documentLink = page.locator("[href*='documents-request']");
 
     await page.locator(".radiotextsty").last().click();
     await page.locator("#okayBtn").click();
@@ -19,5 +20,9 @@ test('UI Control Test', async ({page})=>
     await expect(page.locator("#terms")).toBeChecked();
     await page.locator("#terms").uncheck();
     await expect(page.locator("#terms")).not.toBeChecked();
+
+    await expect(documentLink).toHaveAttribute("class", "blinkingText");
+
+
     //await page.pause();
 });
