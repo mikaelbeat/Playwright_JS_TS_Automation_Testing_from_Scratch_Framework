@@ -25,6 +25,7 @@ test('Child window handling', async ({browser})=>
     const domain = arrayText[1].split(" ")[0];
     console.log(domain)
     await page.locator("#username").type(domain);
+    console.log(await userName.inputValue());
 
     await page.pause();
 
