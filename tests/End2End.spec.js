@@ -3,15 +3,14 @@ const {test, expect} = require('@playwright/test');
 
 test('Browser Context Playwright test', async ({page})=>
 {
-    const productName = "Zara Coat 4";
+    const productName = "ZARA COAT 3";
     const products = page.locator(".card-body");
     await page.goto('https://rahulshettyacademy.com/client');
-    await page.locator('#userEmail').fill("anshika@gmail.com");
-    await page.locator('#userPassword').fill("Iamking@000");
+    await page.locator('#userEmail').fill("testihemmo@testi.fi");
+    await page.locator('#userPassword').fill("Mustakissa1");
     await page.locator("[value='Login']").click();
     await page.waitForLoadState('networkidle');
-    // Alternatively, you can use the following line to wait for a specific element to be visible before proceeding
-    //await page.locator(".card-body b").first().waitFor();
+    await page.locator(".card-body b").first().waitFor();
     const titles = await page.locator(".card-body b").allTextContents();
     console.log(titles);
     const count = await products.count();
@@ -22,4 +21,8 @@ test('Browser Context Playwright test', async ({page})=>
             break;
         }
     }
+    await page.locator("[routerlink*='cart']").click();
+    await page.locator("div li").first().waitFor();
+    const isProductVisible = await page.locator("h3:has-text('ZARA COAT 3')").isVisible();
+    expect(isProductVisible).toBeTruthy();
 });
