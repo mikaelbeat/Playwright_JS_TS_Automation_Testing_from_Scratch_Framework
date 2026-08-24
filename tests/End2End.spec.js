@@ -3,10 +3,11 @@ const {test, expect} = require('@playwright/test');
 
 test('Browser Context Playwright test', async ({page})=>
 {
+    const email = "testihemmo@testi.fi";
     const productName = "ZARA COAT 3";
     const products = page.locator(".card-body");
     await page.goto('https://rahulshettyacademy.com/client');
-    await page.locator('#userEmail').fill("testihemmo@testi.fi");
+    await page.locator('#userEmail').fill(email);
     await page.locator('#userPassword').fill("Mustakissa1");
     await page.locator("[value='Login']").click();
     await page.waitForLoadState('networkidle');
@@ -26,7 +27,7 @@ test('Browser Context Playwright test', async ({page})=>
     const isProductVisible = await page.locator("h3:has-text('ZARA COAT 3')").isVisible();
     expect(isProductVisible).toBeTruthy();
     await page.locator("text=Checkout").click();
-    await page.locator("[placeholder*='Country']").pressSequentially("Ind");
+    await page.locator("[placeholder*='Country']").pressSequentially("Ind", { delay: 150 });
     const dropdown = page.locator(".ta-results");
     await dropdown.waitFor();
     const optionsCount = await dropdown.locator("button").count();
@@ -37,6 +38,13 @@ test('Browser Context Playwright test', async ({page})=>
             break;
         }
 }
+    expect(await page.locator(".user__name [type='text']").first()).toHaveText(email);
+    await page.locator(".action__submit").click();
+    await expect(await page.locator(".hero-primary")).toHaveText(" Thankyou for the order. ");
+    const orderId = await page.locator(".em-spacer-1 .ng-star-inserted").textContent();
+    console.log(orderId);
+
+
     await page.pause();
 
 });
