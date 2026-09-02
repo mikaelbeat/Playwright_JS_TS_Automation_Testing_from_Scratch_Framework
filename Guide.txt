@@ -1,3 +1,9 @@
 
 Starts Playwright ui
 npx playwright test --ui
+
+Starts Playwright in debug mode
+npx playwright test --debug
+
+Starts Playwright Codegen mode
+npx playwright codegen url

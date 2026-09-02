@@ -29,6 +29,7 @@ export default defineConfig({
   use: {
     actionTimeout: 10_000,
     navigationTimeout: 10_000,
+    screenshot: 'only-on-failure',
     /* Base URL to use in actions like `await page.goto('')`. */
     // baseURL: 'http://localhost:3000',
 
