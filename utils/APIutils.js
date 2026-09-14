@@ -10,13 +10,14 @@ class APiUtils {
         }); // 200, 201
         const loginResponseJson = await loginResponse.json();
         const token = loginResponseJson.token;
-        console.log(token);
+        console.log("Token: " + token);
         return token;
     }
  
     async createOrder(orderPayLoad) {
         let response = {};
         response.token = await this.getToken();
+        console.log("Order Payload: " + JSON.stringify(orderPayLoad));
         const orderResponse = await this.apiContext.post("https://rahulshettyacademy.com/api/ecom/order/create-order", {
             data: orderPayLoad,
             headers: {
@@ -26,7 +27,7 @@ class APiUtils {
         });
  
         const orderResponseJson = await orderResponse.json();
-        console.log(orderResponseJson);
+        console.log("Order Response: " + JSON.stringify(orderResponseJson));
         const orderId = orderResponseJson.orders[0];
         response.orderId = orderId;
  
