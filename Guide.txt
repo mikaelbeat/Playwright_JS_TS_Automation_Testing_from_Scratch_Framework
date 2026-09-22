@@ -1,4 +1,11 @@
 
+Starts Playwright using given config file
+npx playwright test --config playwright.configCustom.js
+
+Starts Playwright using given config files project
+*** IF PROJECT IS NOT DEFINED, ALL PROJECTS ARE RUN
+npx playwright test --config playwright.configCustom.js --project=safari
+
 Starts Playwright ui
 npx playwright test --ui
 
