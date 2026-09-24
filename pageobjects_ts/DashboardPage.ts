@@ -1,5 +1,16 @@
-class DashboardPage {
-    constructor(page) {
+
+import { test, expect, Locator, Page }  from '@playwright/test';
+
+export class DashboardPage {
+
+    page : Page;    
+    products : Locator;
+    productsText : Locator;
+    cart : Locator;
+    orders : Locator;
+
+
+    constructor(page : Page) {
         this.page = page;
         this.products = page.locator(".card-body");
         this.productsText = page.locator(".card-body b");
@@ -8,7 +19,7 @@ class DashboardPage {
 
     }
 
-    async searchProductAddCart(productName) {
+    async searchProductAddCart(productName : string) {
 
         const titles = await this.productsText.allTextContents();
         console.log(titles);
@@ -32,4 +43,3 @@ class DashboardPage {
     }
 
 }
-module.exports = { DashboardPage };

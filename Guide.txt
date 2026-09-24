@@ -1,16 +1,29 @@
 
 Starts Playwright using given config file
-npx playwright test --config playwright.configCustom.js
+- npx playwright test --config playwright.configCustom.js
 
 Starts Playwright using given config files project
 *** IF PROJECT IS NOT DEFINED, ALL PROJECTS ARE RUN
-npx playwright test --config playwright.configCustom.js --project=safari
+ - npx playwright test --config playwright.configCustom.js --project=safari
 
 Starts Playwright ui
-npx playwright test --ui
+- npx playwright test --ui
 
 Starts Playwright in debug mode
-npx playwright test --debug
+- npx playwright test --debug
 
 Starts Playwright Codegen mode
-npx playwright codegen url
+- npx playwright codegen url
+
+Run test and creates report type in given argument
+- npx playwright test Demo.spec.js --reporter=line,allure-playwright
+After running test generate report
+- allure generate ./allure-results --clean
+Open generated allure report
+- allure open ./allure-report
+
+Running test sets defined in package.json scripts section
+"scripts":{
+    "regression": "npx playwright test",
+    "WebTests": "npx playwrigh test --grep @Web"
+}
